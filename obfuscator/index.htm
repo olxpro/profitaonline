@@ -1,0 +1,120 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="npm/bootstrap%405.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="main.css" rel="stylesheet">
+
+    <title>Online Text Obfuscator - Hide Your Text from Bots and Filtering Tools</title>
+    <meta name="description" content="Use our free online text obfuscator to hide your text from bots and filtering tools. Our tool helps you disguise your text and keep it hidden from automated tools, while still being easily readable by humans.">
+</head>
+  <body>
+    <div class="container-fluid min-vh-100">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Obfuscator</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex" onsubmit="event.preventDefault(); return false;">
+              <input type="radio" class="btn-check" name="obfuscator" id="ob_perfect" autocomplete="off" value="perfect" data-obfuscator="perfectObfuscator">
+              <label class="btn btn-secondary" for="ob_perfect">Invisible</label>
+              <input type="radio" class="btn-check" name="obfuscator" id="ob_weak" autocomplete="off" value="weak" checked="" data-obfuscator="weakObfuscator">
+              <label class="btn btn-secondary" for="ob_weak">Weak</label>
+              <input type="radio" class="btn-check" name="obfuscator" id="ob_nice" autocomplete="off" value="nice" data-obfuscator="niceObfuscator">
+              <label class="btn btn-secondary" for="ob_nice">Medium</label>
+              <input type="radio" class="btn-check" name="obfuscator" id="ob_strong" autocomplete="off" value="strong" data-obfuscator="strongObfuscator">
+              <label class="btn btn-secondary" for="ob_strong">Strong</label>
+              <input type="radio" class="btn-check" name="obfuscator" id="ob_leet" autocomplete="off" value="leet" data-obfuscator="leetObfuscator">
+              <label class="btn btn-secondary" for="ob_leet">Leet</label>
+              <input type="radio" class="btn-check" name="obfuscator" id="ob_deobfuscator" autocomplete="off" value="deobfuscator" data-obfuscator="deObfuscator">
+              <label class="btn btn-secondary" for="ob_deobfuscator">Deobfuscation</label>
+              <input type="checkbox" class="btn-check" id="obfuscate_adult_swearing">
+              <label class="btn btn-primary" for="obfuscate_adult_swearing">Swearing/Adult Only</label>
+              <input type="checkbox" class="btn-check" id="ob_copy" autocomplete="off" onclick="return updateAutocopy(this);">
+              <label class="btn btn-primary" for="ob_copy">Autoupdate Clipboard</label>
+              <script>
+                if (typeof localStorage	=== 'object') {
+                  document.getElementById('ob_copy').checked = localStorage.getItem('ob_copy') === 'true';
+                }
+
+                function updateAutocopy(e) {
+                  if (typeof localStorage	=== 'object') {
+                    localStorage.setItem('ob_copy', '' + e.checked);
+                  }
+                }
+              </script>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <div class="row mt-3">
+        <div class="col shadow">
+          <h1>Online Text Obfuscator</h1>
+          <p>
+            Obfuscate text to keep it below a robot's radars. Stay free from bots attention while dealing with humans.
+          </p>
+          <h3>Why obfuscate?</h3>
+          <p>
+            Text obfuscation can help circumvent filters on AI systems like ChatGPT and censorship from models like Claude. Disguise content from bots while keeping text human-readable. Obfuscation can be accompanied by tools like inaccurate translators and synonym generators to further mask sensitive texts.
+          </p>
+          <h3>Important!</h3>
+          It is also important to keep in mind that obfuscation can sometimes save you from people searching online. But it is
+          not a perfect solution to hide contact details, protect your e-mail or other sensitive information. Obfuscation is
+          not encryption. And it can be easily reversed by a human or a specialized tool and original data can be recovered.
+          Obfuscation is also using diacritic marks, which may be ignored by some search engines. E-mail obfuscation is also may
+          lead to losing all e-mails sent to pasted obfuscated address. E-mail address obfuscation is not recommended.
+        </div> 
+      </div>
+
+      <div class="row">
+        <div class="col-12 text-center">
+          <iframe data-aa='2026294' src='//acceptable.a-ads.com/2026294' style='border:0px; padding:0; width:100%; height:100%; overflow:hidden; background-color: transparent;'></iframe>
+        </div>
+      </div>
+
+      <div class="row mt-3 mb-3">
+        <div class="col-md-12 col-lg-6">
+
+
+          <div class="row">
+            <div class="col-12">
+              <textarea class="form-control" id="source_text" rows="10" placeholder="Place here the text you want to obfuscate"></textarea>
+            </div>
+          </div>
+
+    
+        </div>
+        <div class="col-md-12 col-lg-6">
+
+          <div class="row">
+            <div class="col-12">
+              <textarea class="form-control" id="obfuscated_text" readonly="" rows="10" placeholder="And here you can get it obfuscated" onfocus="this.select()"></textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script src="npm/bootstrap%405.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <script src="obfuscator.js"></script>
+    <script src="main.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46020583-1', 'uo1.net');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
