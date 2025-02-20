@@ -2660,3 +2660,86 @@
     }
     )()
 </script>
+
+
+<style>
+    /* Popup styling */
+    .social-proof-popup {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      max-width: 300px;
+      font-family: Arial, sans-serif;
+      display: none; /* Hidden by default */
+    }
+
+    .social-proof-popup.show {
+      display: block; /* Show popup */
+    }
+
+    .social-proof-popup p {
+      margin: 0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .social-proof-popup .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #999;
+    }
+
+    .social-proof-popup .close-btn:hover {
+      color: #333;
+    }
+</style>
+  
+  <!-- Social Proof Popup -->
+  <div class="social-proof-popup" id="socialProofPopup">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <p id="socialProofMessage">Loading...</p>
+  </div>
+
+  <script>
+    // Social proof messages
+    const messages = [
+      "🌟 Jane from New York just purchased a product!",
+      "🚀 Mike from California signed up for a trial!",
+      "🎉 Sarah from Texas left a 5-star review!",
+      "🔥 John from Florida upgraded to premium!",
+      "💡 Emily from Chicago shared our app with friends!"
+    ];
+
+    let currentMessageIndex = 0;
+    const popup = document.getElementById('socialProofPopup');
+    const messageElement = document.getElementById('socialProofMessage');
+
+    // Function to show the next message
+    function showNextMessage() {
+      messageElement.textContent = messages[currentMessageIndex];
+      popup.classList.add('show');
+      currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+    }
+
+    // Function to close the popup
+    function closePopup() {
+      popup.classList.remove('show');
+    }
+
+    // Show the first message immediately
+    showNextMessage();
+
+    // Change message every 10 seconds
+    setInterval(showNextMessage, 10000);
+
+    // Optional: Automatically close the popup after 5 seconds
+    setInterval(closePopup, 5000);
+  </script>
