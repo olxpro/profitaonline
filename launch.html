@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanzarile OLX un mister?</title>
+    <!-- Font Awesome for warning icon (optional, but matches the image) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 50px; /* Add some space at the bottom */
+        }
+
+        .alert-bar {
+            background-color: #fff3cd; /* Light yellow/orange background */
+            color: #856404; /* Dark yellow/orange text */
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1em;
+            animation: pulse-bg 2s infinite alternate; /* Add pulse animation */
+            border-bottom: 1px solid #ffeeba;
+        }
+
+        /* Keyframes for the pulse background animation */
+        @keyframes pulse-bg {
+            0% {
+                background-color: #fff3cd;
+            }
+            100% {
+                background-color: #ffeeba; /* Slightly different yellow for pulse effect */
+            }
+        }
+
+
+        .alert-icon {
+            margin-right: 10px;
+            color: #ffc107; /* Warning icon color */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .main-heading {
+            font-size: 2.8em;
+            color: #222;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .emoji {
+            display: inline-block;
+            vertical-align: middle; /* Align emoji better with text */
+            margin-left: 10px;
+            font-size: 1.2em; /* Adjust emoji size relative to heading */
+        }
+
+
+        .description-text {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .video-placeholder {
+            margin: 40px auto; /* Add space above and below */
+            max-width: 560px; /* Match iframe width */
+            width: 100%; /* Make it responsive */
+            text-align: center;
+        }
+
+        .video-placeholder iframe {
+            width: 100%; /* Make iframe responsive within container */
+            height: 315px; /* Maintain aspect ratio or set desired height */
+            border: none; /* Remove default iframe border */
+        }
+
+        .video-placeholder p {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 10px;
+        }
+
+
+        #optimize-form {
+            margin: 40px auto;
+            max-width: 600px; /* Limit form width for better look */
+            background-color: #f97d59; /* Orange/Coral background */
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+             /* Ensure the form element itself is a flex container for responsive layout */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-input-group {
+             display: flex; /* Use flexbox for inline elements */
+             gap: 10px; /* Space between input and button */
+             flex-wrap: wrap; /* Allow wrapping on smaller screens */
+             justify-content: center; /* Center items horizontally */
+             align-items: center; /* Align items vertically */
+             width: 100%; /* Make the input group take full width of the form */
+        }
+
+
+        #email {
+            flex-grow: 1; /* Allow email input to take available space */
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            min-width: 200px; /* Ensure minimum width for email input */
+        }
+
+
+        #submit-button {
+            background-color: #fff; /* White background */
+            color: #f97d59; /* Orange/Coral text color */
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #submit-button:hover {
+            background-color: #eee; /* Lighten button background on hover */
+        }
+
+        .success-message {
+            margin-top: 30px; /* Added some top margin */
+            padding: 20px;
+            background-color: #d4edda; /* Light green background */
+            color: #155724; /* Dark green text color */
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+            display: none; /* Initially hidden */
+             max-width: 600px; /* Match form width for consistent look */
+             margin: 40px auto; /* Center it like the form */
+        }
+
+
+        .testimonial {
+            margin-top: 40px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .main-heading {
+                font-size: 2em;
+            }
+
+             /* Adjusted form display for stacking on small screens */
+            #optimize-form {
+                 flex-direction: column;
+                 align-items: stretch; /* Stretch items to fill width */
+                 padding: 20px; /* Adjust padding */
+            }
+
+
+            .form-input-group {
+                flex-direction: column; /* Stack inputs vertically on small screens */
+                gap: 15px;
+                 width: auto; /* Reset width for stacking */
+            }
+
+            #email,
+            #submit-button {
+                 width: 100%; /* Make inputs and button full width */
+                 box-sizing: border-box; /* Include padding in width */
+                 flex-grow: initial; /* Reset flex-grow */
+                 min-width: auto;
+            }
+
+            .video-placeholder iframe {
+                height: 200px; /* Adjust video height for small screens */
+            }
+
+            .alert-bar {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="alert-bar">
+        <span class="alert-icon"><i class="fas fa-exclamation-triangle"></i></span>
+        <span class="alert-text">Vrei sa vinzi mai mult si mai repede?... esti la un click distanta!</span>
+    </div>
+
+    <div class="container">
+        <h1 class="main-heading">Vanzarile OLX un mister <span class="emoji">🤔</span>?</h1>
+
+        <p class="description-text">
+            Vezi clar de ce anuntul tau nu functioneaza si genereaza de 10x mai multi clienti.
+        </p>
+        <p class="description-text">
+            Introdu Adresa ta de email si click pe OPTIMIZEAZA...
+        </p>
+        <p class="description-text">
+            AI'ul analizeaza anuntul si primesti un raport personalizat pe email
+        </p>
+
+        <!-- YouTube Video Embed Placeholder -->
+        <div class="video-placeholder">
+             <!-- Replace 'VIDEO_ID' with the actual YouTube video ID you want to embed -->
+             <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID"
+                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                     allowfullscreen></iframe>
+             <p>*(Replace "VIDEO_ID" in the HTML with your video URL)*</p>
+        </div>
+
+
+        <!-- The entire form will be hidden -->
+        <form id="optimize-form">
+            <div class="form-input-group">
+                 <!-- Removed "Pagina Anuntului OLX" input -->
+                <input type="email" id="email" name="email" placeholder="Adresa Email" required>
+                <button type="submit" id="submit-button">OPTIMIZEAZA</button>
+            </div>
+        </form>
+
+        <!-- Success Message Placeholder (initially hidden) -->
+        <div id="success-message" class="success-message">
+            ✅ Formularul a fost trimis cu succes! Verifica emailul in curand.
+        </div>
+
+
+        <p class="testimonial">
+            "Recomand oricui vrea sa vanda pe olx!" - Mirela S.
+        </p>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('optimize-form');
+            const emailInput = document.getElementById('email');
+            const successMessageDiv = document.getElementById('success-message');
+            // Removed the formInputGroup variable as we'll hide the whole form now
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission (page reload)
+
+                const email = emailInput.value;
+                const webhookUrl = 'https://n8n-md7t.onrender.com/webhook-test/soon'; // Your webhook URL
+
+                const data = {
+                    email: email
+                    // Note: Removed "Pagina Anuntului OLX" data as per requirement 3
+                };
+
+                // Disable the button and show a loading state if desired
+                const submitButton = document.getElementById('submit-button');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Se trimite...'; // Or add a spinner
+
+                try {
+                    // Send the POST request to the webhook
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    console.log('Webhook response status:', response.status); // Log status for debugging
+
+                    // Assuming success if the fetch call doesn't throw a network error
+                    // Hide the form and show the success message
+                    form.style.display = 'none'; // Hide the entire form element
+                    successMessageDiv.style.display = 'block'; // Show the success message
+
+                    // Optionally, reset the form (though hidden)
+                    // form.reset();
+
+                } catch (error) {
+                    console.error('Error sending data to webhook:', error);
+                    // Re-enable button and show error message if fetch failed
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'OPTIMIZEAZA';
+                    // You might want to display an error message to the user here
+                    // successMessageDiv.textContent = 'A aparut o eroare la trimiterea datelor. Te rugam sa incerci din nou.';
+                    // successMessageDiv.style.backgroundColor = '#f8d7da'; // Error color
+                    // successMessageDiv.style.color = '#721c24';
+                    // successMessageDiv.style.display = 'block'; // Show error message
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
