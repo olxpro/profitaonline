@@ -1,3 +1,5 @@
+--- START OF FILE index.html ---
+
 <!DOCTYPE html>
 <html lang=en style=background:rgb(241,99,52)>
     <meta charset=utf-8>
@@ -1249,6 +1251,10 @@
         @media (min-width: 768px) {
         }
 
+        #topbar.webinar .svg {
+            display: none
+        }
+
         @media (min-width: 480px) {
             #topbar.webinar .svg {
                 display:block;
@@ -2120,14 +2126,6 @@
         .sf-hidden {
             display: none!important
         }
-        /* Added styles for loading indicator */
-        @keyframes loading-blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .field-submit-icon {
-            animation: loading-blink 1s infinite;
-        }
     </style>
     <meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
 </head>
@@ -2180,7 +2178,7 @@
                             }
                           </style>
                           <span class="field-submit-text">optimizeaza</span>
-                          <span class="field-submit-icon sf-hidden">...</span>
+                          <span class="field-submit-icon sf-hidden"></span>
                         </button> 
                    </fieldset>
                 </form>
@@ -2606,6 +2604,13 @@
                 opacity: 0
             }
 
+            .applied-rule-name {
+                max-width: 300px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
+
             #settings-button {
                 position: relative
             }
@@ -2720,13 +2725,11 @@
                 if (submitButtonIcon) submitButtonIcon.classList.add('sf-hidden');
 
                 // Redirect the user after the fetch request completes (successfully or not)
-                // A small delay can be added here if you want the loading indicator to be visible for a minimum time
-                // setTimeout(() => {
-                   window.location.href = 'https://olxpro.eu/launch.html';
-                // }, 500); // Example: 500ms delay
+                window.location.href = 'https://olxpro.eu/launch.html';
             });
         });
     });
 </script>
 </body>
 </html>
+--- END OF FILE index.html ---
