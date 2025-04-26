@@ -2149,11 +2149,11 @@
                 </p>
                 <form id="ubersuggest-form" class="form form-ubersuggest gray" action="https://n8n-md7t.onrender.com/webhook/analyze" method="post" data-v="mode">
                     <fieldset class="fieldset fieldset-olxurl"style="margin-left: 2px; margin-right: 2px;">
-                        <input type="text" class="field-olxurl" name="olxurl" placeholder="Pagina Anuntului OLX" aria-label="Pagina Anunt OLX" aria-required="true" required="" value="">
+                        <input type="text" class="field-olxurl" name="olxurl" placeholder="Pagina Anuntului OLX" aria-label="Pagina Anunt OLX" aria-required="true" required value="">
                     </fieldset>
 
                     <fieldset class="fieldset fieldset-email" style="margin-left: 2px; margin-right: 2px;">
-                        <input type="email" class="field-email" name="email" placeholder="Adresa Email" aria-label="Adresa Email" aria-required="true" required="" value="">
+                        <input type="email" class="field-email" name="email" placeholder="Adresa Email" aria-label="Adresa Email" aria-required="true" required value="">
                     </fieldset>
 
                     <fieldset class="fieldset fieldset-submit" style="margin-left: 2px; margin-right: 2px;">
@@ -2676,30 +2676,53 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('ubersuggest-form');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const submitButtonText = submitButton.querySelector('.field-submit-text');
+        const submitButtonIcon = submitButton.querySelector('.field-submit-icon');
 
         form.addEventListener('submit', function(event) {
-            // Prevent the default form submission that would navigate the page
-            event.preventDefault();
+            event.preventDefault(); // Prevent default form submission
 
-            // Get form data
+            // Disable button and show loading indicator
+            submitButton.disabled = true;
+            if (submitButtonText) submitButtonText.classList.add('sf-hidden');
+            if (submitButtonIcon) submitButtonIcon.classList.remove('sf-hidden');
+
             const formData = new FormData(form);
 
-            // Send data to the webhook using fetch
             fetch(form.action, {
                 method: form.method,
-                body: formData
+                body: formData,
+                // Optional: Add headers if needed by the webhook
+                // headers: {
+                //     'Accept': 'application/json', // Example: if webhook expects JSON response
+                //     'Content-Type': 'application/json' // Example: if sending JSON body
+                // },
+                // Optional: mode: 'no-cors' if webhook doesn't have CORS headers (less reliable)
+                // mode: 'no-cors'
             })
             .then(response => {
-                // You can optionally handle the response here if needed,
-                // but the requirement is to redirect regardless of success/failure.
+                // Log response status, even if it's an error status (e.g., 404, 500)
                 console.log('Webhook response status:', response.status);
+                // Attempt to read response body if needed for debugging, but handle potential errors
+                // return response.text(); // Or .json()
             })
+            // .then(data => {
+            //     console.log('Webhook response data:', data);
+            // })
             .catch(error => {
-                // Log any network errors, but still redirect
-                console.error('Error sending to webhook:', error);
+                // Handle network errors or fetch issues
+                console.error('Error sending data:', error);
+                // You could potentially show an error message to the user here
             })
             .finally(() => {
-                // Redirect to the launch page after the fetch request completes
+                // Re-enable button and hide loading indicator (optional, as page navigates)
+                // This block runs whether the fetch promise resolves or rejects
+                submitButton.disabled = false;
+                if (submitButtonText) submitButtonText.classList.remove('sf-hidden');
+                if (submitButtonIcon) submitButtonIcon.classList.add('sf-hidden');
+
+                // Redirect the user after the fetch request completes (successfully or not)
                 window.location.href = 'https://olxpro.eu/launch.html';
             });
         });
